@@ -1,0 +1,94 @@
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: x-large;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+}
+
+.navigation nav{
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    max-width: 1100px;
+    padding: 20px;
+}
+
+nav img{
+    height: 50px;
+}
+
+.btn{
+    background-color: #007bff;
+    color: white;
+    font-size: large;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    height: 50px;
+    width: 80px;
+    font-weight: 700;
+}
+
+.container{
+    display: block;
+    max-width: 1100px;
+    margin: auto;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.text h3, p{
+    text-align: center;   
+}
+
+form{
+    font-size: 35px;
+    border-bottom: solid 2px blue;
+}
+
+.form input{
+    width: 100%;
+    height: 3rem;
+    font: 1.5rem;
+    margin: 5px;
+    padding-left: 5px;
+    outline: none;
+    background-color: rgb(207, 207, 207);
+
+}
+
+form input[
+    type="submit"
+]{
+    background-color: #007bff;
+    color: white;
+    font-weight: 700;
+}
+
+form input[
+    type="submit"
+]:hover{
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+form input[
+    type="submit"
+]:active{
+    transform: scale(0.95);
+}
+
+.btn:hover{
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.btn:active{
+    transform: scale(0.95);
+}
+
+h3{
+    font-size: 35px;
+}
+
