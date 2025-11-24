@@ -81,11 +81,15 @@ body {
   padding: 2rem;
 }
 
+/* Labels (Email & Password headers) */
 .left-panel label {
   font-size: 0.95rem;
-  font-weight: 600;
-  color: #00c4ff;   /* bright cyan accent */
+  font-weight: 700; /* bold */
+  color: #007bff;   /* same as input border colour */
+  margin-bottom: 0.25rem;
+  display: block;
 }
+
 
 /* Frosted glass box for left panel */
 .left-panel {
@@ -101,7 +105,14 @@ body {
 }
 
 /* Headings inside left panel */
-.left-panel h1,
+.left-panel h1 {
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85); /* slightly darker than before */
+  margin-bottom: 1rem;
+}
+
 .left-panel h2 {
   font-family: "Bebas Neue", sans-serif;  /* bold, clean font */
   font-weight: 600;
@@ -110,15 +121,15 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Subtitle text */
+/* Subtitle styling */
 .left-panel .subtitle {
-  font-family: "Poppins", sans-serif;   /* or Montserrat if you prefer */
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.6);      /* translucent white */
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  color: rgba(200,200,200,0.85); /* darker grey */
+  text-align: center;
   margin-bottom: 1.5rem;
 }
+
 
 /* Inputs inside left panel */
 .left-panel input {
@@ -127,9 +138,11 @@ body {
   color: #fff;
 }
 
+/* Placeholders darker grey */
 .left-panel input::placeholder {
-  color: rgba(255,255,255,0.5);
+  color: #555; /* darker grey */
 }
+
 
 /* Buttons inside left panel */
 .left-panel .btn {
@@ -244,6 +257,30 @@ nav img {
   font-size: 0.95rem;
 }
 
+/* Buttons styling */
+.form-actions {
+  display: flex;
+  gap: 1rem; /* creates space between Log In and Reset Password */
+}
+
+.form-actions .btn {
+  flex: 1; /* make both buttons equal width */
+  background: #007bff;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 0.75rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-actions .btn:hover {
+  background: #0056b3;
+}
+
+.form-actions .btn:active {
+  transform: scale(0.98);
+}
+
 /* Form rows */
 .form-row {
   display: flex;
@@ -302,14 +339,16 @@ button {
   font-size: 1rem;
 }
 
+/* Inputs with permanent border colour */
 .left-panel input[type="email"],
 .left-panel input[type="password"] {
-  border: 2px solid #007bff;   /* same colour as focus */
+  border: 2px solid #007bff;
   background: rgba(255,255,255,0.15);
   border-radius: 8px;
   padding: 0.75rem 0.9rem;
   color: #fff;
 }
+
 
 .left-panel input:focus {
   outline: none;               /* remove default outline */
