@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPS</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="login.js" type="module" defer> </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NPS</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="//fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="Auth.js" type="module" defer></script>
 </head>
-
 <body>
-<div class="background">
+  <div class="background" aria-hidden="true">
     <div class="shape"></div>
     <div class="shape"></div>
-</div>
+  </div>
 
-    <div class="navigation"></div>
-    <nav>
-        <img src="NPS.com/Images/NPS_logo.png" alt="NPS Logo" id="Logo">
+  <header class="site-header">
+    <nav class="navigation" aria-label="Main navigation">
+      <a href="/" class="logo-link">
+        <img src="NPS.com/Images/NPS_logo.png" alt="NPS logo" id="Logo" width="160" height="60">
+      </a>
     </nav>
-</div>
+  </header>
 
-<div class="container">
-    <div class="text">
-        <h3>Welcome to NPS</h3>
-        <div class="subtitle">Your Ultimate Basketball Statistics Hub
-    </div>
+  <main class="container" id="main" role="main">
+    <section class="hero text">
+      <h1>Welcome to NPS</h1>
+      <p class="subtitle">Your Ultimate Basketball Statistics Hub</p>
+    </section>
 
-        <form action="#">
-    <h3>Login</h3>
+    <section class="auth" aria-labelledby="login-heading">
+      <form id="loginForm" action="#" novalidate>
+        <h2 id="login-heading">Login</h2>
 
-    <label for="username"> Username
-    <input type="email" placeholder="Email" id="username" required>
-    </label>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+        </div>
 
-    <label for="password"> Password
-    <input type="password" placeholder="Password" id="password" required>
-    </label>
+        <div class="form-row">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password" />
+        </div>
 
-    <button type="submit">Log In</button>
+        <div id="logError" role="status" aria-live="polite" class="message" ></div>
 
-    </div>
-</form>
-
-    </div>
-
-
-    </div>
-</div>
-
+        <div class="form-actions">
+          <button id="signIn" type="button" class="btn primary">Log In</button>
+          <button id="reset" type="button" class="btn secondary">Reset Password</button>
+        </div>
+      </form>
+    </section>
+  </main>
 </body>
 </html>

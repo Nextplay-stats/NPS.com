@@ -1,8 +1,8 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import {
   getAuth,
-  sendPasswordResetEmail, signInWithEmailAndPassword
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -17,46 +17,103 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const signIn = document.getElementById("signIn");
-signIn.addEventListener("click", function (event) {
-  event.preventDefault();
+/**
+ * Basic email format check
+ * Returns true for simple valid-looking emails, false otherwise.
+ */
+function isValidEmail(email) {
+  // Simple regex for basic validation; not exhaustive
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+document.addEventListener("DOMContentLoaded", () => {
+  const signInBtn = document.getElementById("signIn");
+  const resetBtn = document.getElementById("reset");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
   const logError = document.getElementById("logError");
 
-  if (email === "" || password === "") {
-    logError.innerHTML = "Please fill in both fields";
-  } else {
+  // Ensure required elements exist before attaching listeners
+  if (!signInBtn || !resetBtn || !emailInput || !passwordInput || !logError) {
+    console.warn("Auth.js: one or more required DOM elements are missing.");
+    return;
+  }
+
+  // Helper to show messages safely
+  function showMessage(message, isError = true) {
+    logError.textContent = message;
+    logError.classList.toggle("error", isError);
+    logError.classList.toggle("success", !isError);
+  }
+
+  // Helper to toggle UI while async operations run
+  function setProcessing(isProcessing) {
+    signInBtn.disabled = isProcessing;
+    resetBtn.disabled = isProcessing;
+  }
+
+  signInBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      showMessage("Please fill in both fields.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      showMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setProcessing(true);
+    showMessage("Signing in...", false);
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        // Signed in successfully
         window.location.href = "/dashboard.html";
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        logError.innerHTML = errorMessage;
+        // Show a safe, user-friendly message
+        const errorMessage = error && error.message ? error.message : "Sign-in failed.";
+        showMessage(errorMessage);
+      })
+      .finally(() => {
+        setProcessing(false);
       });
-  }
-});
+  });
 
-const reset = document.getElementById("reset");
-reset.addEventListener("click", function (event) {
-  event.preventDefault();
-  const email = document.getElementById("email").value;
-  const logError = document.getElementById("logError");
+  resetBtn.addEventListener("click", (event) => {
+    event.preventDefault();
 
-  sendPasswordResetEmail(auth, email)
-    .then(() => {
-      // Password reset email sent!
-      // ..
-      logError.innerHTML = "Password reset email sent!";
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      logError.innerHTML = errorMessage;
-      // ..
-    });
+    const email = emailInput.value.trim();
+
+    if (!email) {
+      showMessage("Please enter your email to reset your password.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      showMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setProcessing(true);
+    showMessage("Sending password reset email...", false);
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        showMessage("Password reset email sent!", false);
+      })
+      .catch((error) => {
+        const errorMessage = error && error.message ? error.message : "Failed to send reset email.";
+        showMessage(errorMessage);
+      })
+      .finally(() => {
+        setProcessing(false);
+      });
+  });
 });
