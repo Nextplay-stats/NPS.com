@@ -81,11 +81,58 @@ body {
   padding: 2rem;
 }
 
-/* Left panel: form and welcome text */
+/* Frosted glass box for left panel */
 .left-panel {
   flex: 1;
   max-width: 500px;
+  background: rgba(255, 255, 255, 0.08); /* semi-transparent white */
+  backdrop-filter: blur(12px);            /* blur effect */
+  -webkit-backdrop-filter: blur(12px);    /* Safari support */
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  color: rgba(255,255,255,0.85);          /* slightly see-through text */
 }
+
+/* Headings inside left panel */
+.left-panel h1,
+.left-panel h2 {
+  font-family: "Bebas Neue", sans-serif;  /* bold, clean font */
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);           /* translucent white */
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4); /* subtle glow for readability */
+  margin-bottom: 1rem;
+}
+
+/* Subtitle text */
+.left-panel .subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);           /* lighter, more transparent */
+  margin-bottom: 1.5rem;
+}
+
+/* Inputs inside left panel */
+.left-panel input {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.left-panel input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+/* Buttons inside left panel */
+.left-panel .btn {
+  background: rgba(0,123,255,0.85);
+  color: #fff;
+}
+
+.left-panel .btn:hover {
+  background: rgba(0,123,255,1);
+}
+
 
 /* Right panel: logo */
 .right-panel {
@@ -227,12 +274,6 @@ input:focus {
   color: rgba(255,255,255,0.6);
   font-size: 0.95rem;
 }
-
-<div class="left-panel">
-  <h1>Welcome to NPS</h1>
-  <p class="subtitle">Your Ultimate Basketball Statistics Hub</p>
-  <!-- login form here -->
-</div>
 
 /* Buttons */
 .btn,
