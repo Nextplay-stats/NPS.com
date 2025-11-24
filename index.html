@@ -24,32 +24,36 @@
     </nav>
   </header>
 
-  <main class="container" id="main" role="main">
-    <section class="hero text">
-      <h1>Welcome to NPS</h1>
-      <p class="subtitle">Your Ultimate Basketball Statistics Hub</p>
-    </section>
+  <div class="container layout-split">
+  <div class="left-panel">
+    <h1>Welcome to NPS</h1>
+    <p class="subtitle">Your Ultimate Basketball Statistics Hub</p>
 
-    <section class="auth" aria-labelledby="login-heading">
-      <form id="loginForm" action="#" novalidate>
-        <h2 id="login-heading">Login</h2>
+    <form id="loginForm">
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
 
-        <div class="form-row">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
-        </div>
+      <div class="form-row">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
 
-        <div class="form-row">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password" />
-        </div>
+      <div id="logError" class="message" role="status" aria-live="polite"></div>
 
-        <div id="logError" role="status" aria-live="polite" class="message" ></div>
+      <div class="form-actions">
+        <button id="signIn" type="button" class="btn primary">Log In</button>
+        <button id="reset" type="button" class="btn secondary">Reset Password</button>
+      </div>
+    </form>
+  </div>
 
-        <div class="form-actions">
-          <button id="signIn" type="button" class="btn primary">Log In</button>
-          <button id="reset" type="button" class="btn secondary">Reset Password</button>
-        </div>
+  <div class="right-panel">
+    <img src="NPS.com/Images/NPS_logo.png" alt="NPS Logo" class="logo-large" />
+  </div>
+</div>
+
       </form>
     </section>
   </main>
