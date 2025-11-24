@@ -109,7 +109,7 @@ body {
   text-align: center;
   font-family: "Bebas Neue", sans-serif;
   font-weight: 600;
-  color: rgba(255,255,255,0.85); /* slightly darker than before */
+  color: rgb(21,63,118); 
   margin-bottom: 1rem;
 }
 
@@ -125,7 +125,7 @@ body {
 .left-panel .subtitle {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
-  color: rgba(200,200,200,0.85); /* darker grey */
+  color: rgb(32,82,143); /* darker grey */
   text-align: center;
   margin-bottom: 1.5rem;
 }
