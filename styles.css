@@ -81,6 +81,12 @@ body {
   padding: 2rem;
 }
 
+.left-panel label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #00c4ff;   /* bright cyan accent */
+}
+
 /* Frosted glass box for left panel */
 .left-panel {
   flex: 1;
@@ -106,9 +112,11 @@ body {
 
 /* Subtitle text */
 .left-panel .subtitle {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  color: rgba(255,255,255,0.7);           /* lighter, more transparent */
+  font-family: "Poppins", sans-serif;   /* or Montserrat if you prefer */
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);      /* translucent white */
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
   margin-bottom: 1.5rem;
 }
 
@@ -292,6 +300,21 @@ button {
   transition: background-color var(--transition), transform var(--transition);
   width: 100%;
   font-size: 1rem;
+}
+
+.left-panel input[type="email"],
+.left-panel input[type="password"] {
+  border: 2px solid #007bff;   /* same colour as focus */
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  color: #fff;
+}
+
+.left-panel input:focus {
+  outline: none;               /* remove default outline */
+  border-color: #007bff;       /* keep same colour */
+  box-shadow: 0 0 0 4px rgba(0,123,255,0.15);
 }
 
 .btn.secondary {
