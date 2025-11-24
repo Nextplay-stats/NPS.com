@@ -24,6 +24,8 @@ const analytics = getAnalytics(app);
 const signUp = document.getElementById('signup');
 signUp.addEventListener('click', function(event){
 event.preventDefault();
+})
+
 
 const email = document.getElementById("email").value
 const password = document.getElementById("password").value
@@ -32,13 +34,14 @@ createUserWithEmailAndPassword(auth, email, password,username)
     .then((userCredential) => {
         const user = userCredential.user;
         alert("Account Created Successfully")
-        window.location.href = "index.html";
+        window.location.href = "/dashboard.html";
     })
 
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage)
+        const errorAlert = document.getElementById("logError");
+        errorAlert.innerHTML(errorMessage)
     })
 
 })

@@ -4,39 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NPS</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="login.js" type="module" defer> </script>
 </head>
+
 <body>
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+
     <div class="navigation"></div>
     <nav>
-        <img src="logo.png" alt="NPS Logo" id="Logo">
-        <a href="signup.html"><button class="btn">Sign Up</button></a>
+        <img src="NPS_landscape_log.png" alt="NPS Logo" id="Logo">
     </nav>
 </div>
 
 <div class="container">
     <div class="text">
         <h3>Welcome to NPS</h3>
-        <p>
-        Your gateway to smarter sports insights.
-        Log in to access powerful dashboards that track performance, trends, and game-changing analytics.
-        Stay ahead of the competition with data that turns every play into your next winning move.
-        </p>
+        <div class="subtitle">Your Ultimate Basketball Statistics Hub
     </div>
 
-    
-    <div class="login-form">
-        <h3>Register</h3>
         <form action="#">
-            <label for ="email">
-                <input type="email" placeholder="Enter your email" id="email" required>
-            </label>
-            <label for ="password">
-                <input type="password" placeholder="Enter your password" id="password" required>
-            </label> 
-            <input type="submit" id="Login">
-        </form>
+    <h3>Login</h3>
+
+    <label for="username"> Username
+    <input type="email" placeholder="Email or Phone" id="username" required>
+    </label>
+
+    <label for="password"> Password
+    <input type="password" placeholder="Password" id="password" required>
+    </label>
+
+    <button type="submit">Log In</button>
+
+    <div class="form"></div>
+        <p>Don't have an account? <a href="#">Create One</a></p>
+    </div>
+
+    </div>
+</form>
 
     </div>
 
