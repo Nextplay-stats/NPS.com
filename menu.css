@@ -14,6 +14,9 @@ body {
   background-image: url('assets/images/Background.png');
   background-size: cover;
   background-position: center;
+  margin: 0;
+  align-items: center;   /* vertical centering */
+  justify-content: center; /* horizontal centering */
   background-repeat: no-repeat;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
@@ -81,6 +84,8 @@ body {
 
 /* Individual menu card */
 .menu-card {
+  display: block;              /* ensures full card is clickable */
+  cursor: pointer;             /* shows pointer on hover */
   background: rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 1.5rem;
