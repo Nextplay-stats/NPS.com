@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       msg("Signing in...", false);
       await signInWithEmailAndPassword(auth, email, password);
       msg("Signed in. Redirecting...", false);
-      window.location.href = "/dashboard.html";
+      window.location.href = "/homepage.html";
     } catch (error) {
       msg(error.message || "Sign-in failed.");
       console.error(error);
