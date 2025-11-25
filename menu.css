@@ -36,19 +36,18 @@ body {
 /* Main wrapper */
 .menu-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  width: 100%;
-  gap: 2rem;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
 }
 
 /* Left panel with frosted glass */
 .menu-left {
-  flex: 1;
-  min-width: 320px;
-  background: var(--frost);
+  flex: 0 0 450px; /* fixed width similar to login box */
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
@@ -93,28 +92,39 @@ body {
   transition: transform 0.2s ease, background 0.3s ease;
 }
 
-.menu-card i {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  display: block;
+.menu-card {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  color: #003366;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
 }
 
 .menu-card:hover {
   transform: translateY(-4px);
-  background: rgba(0, 123, 255, 0.2);
+  background: var(--accent);   /* bright blue background */
+  color: #fff;                 /* text turns white */
+}
+
+.menu-card:hover i {
+  color: #fff;                 /* icon turns white too */
 }
 
 /* Right panel for logo */
 .menu-right {
-  flex: 1;
+  flex: 0 0 400px; /* fixed width similar to login logo */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .menu-logo {
-  max-width: 100%;
-  width: clamp(200px, 40vw, 400px);
+  width: 100%;
+  max-width: 350px;
 }
 
 /* Responsive layout */
