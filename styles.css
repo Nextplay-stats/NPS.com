@@ -443,7 +443,7 @@ body {
 }
 
 .menu-background {
-  background: url("NPS.com/Images/BasketballCourt.png") center/cover no-repeat;
+  background: url("assets/images/Background.png") center/cover no-repeat;
   width: 100%;
   height: 100%;
   position: absolute;
