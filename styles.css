@@ -431,17 +431,6 @@ button {
   --frost: rgba(255, 255, 255, 0.08);
 }
 
-body {
-  margin: 0;
-  font-family: "Montserrat", sans-serif;
-  background: linear-gradient(to bottom right, #dceeff, #b3d4ff);
-  color: var(--text-dark);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .menu-background {
   background: url("assets/images/Background.png") center/cover no-repeat;
   width: 100%;
