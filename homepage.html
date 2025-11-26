@@ -1,36 +1,37 @@
-
-</script>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>NPS Menu</title>
+
+  <!-- Firebase Auth Guard -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-      const firebaseConfig = {
-    apiKey: "AIzaSyDGdQXdq1cOdawjkF_hnSunb87RvNLF-lw",
-    authDomain: "npsv5-5a9be.firebaseapp.com",
-    projectId: "npsv5-5a9be",
-    storageBucket: "npsv5-5a9be.appspot.com",
-    messagingSenderId: "1009523253982",
-    appId: "1:1009523253982:web:50848006f7eb699056984f"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyDGdQXdq1cOdawjkF_hnSunb87RvNLF-lw",
+      authDomain: "npsv5-5a9be.firebaseapp.com",
+      projectId: "npsv5-5a9be",
+      storageBucket: "npsv5-5a9be.appspot.com",
+      messagingSenderId: "1009523253982",
+      appId: "1:1009523253982:web:50848006f7eb699056984f"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      window.location.replace("/index.html"); // redirect immediately
-    }
-  });
-</script>
-
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.replace("/index.html"); // redirect immediately if not logged in
+      }
+    });
   </script>
-  <title>NPS Menu</title>
-  ...
+
+  <!-- Styles and fonts -->
+  <link rel="stylesheet" href="menu.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 
 
