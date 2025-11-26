@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyDGdQXdq1cOdawjkF_hnSunb87RvNLF-lw",
   authDomain: "npsv5-5a9be.firebaseapp.com",
@@ -37,9 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!email || !password) return msg("Please enter both email and password.");
     try {
       msg("Signing in...", false);
-      await signInWithEmailAndPassword(auth, email, password);
-      msg("Signed in. Redirecting...", false);
-      window.location.href = "/homepage.html";
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+
+      // 🔑 Step 3: Exchange ID token for session cookie
+      const idToken = await user.getIdToken();
+      const response = await fetch("/setSession", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken })
+      });
+
+      if (response.ok) {
+        msg("Signed in. Redirecting...", false);
+        window.location.replace("/homepage"); // protected route
+      } else {
+        msg("Failed to set session cookie.");
+      }
     } catch (error) {
       msg(error.message || "Sign-in failed.");
       console.error(error);
