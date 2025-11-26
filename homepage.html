@@ -6,27 +6,11 @@
 
   <!-- Firebase Auth Guard -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+  import { protectPage } from "./authGuard.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDGdQXdq1cOdawjkF_hnSunb87RvNLF-lw",
-      authDomain: "npsv5-5a9be.firebaseapp.com",
-      projectId: "npsv5-5a9be",
-      storageBucket: "npsv5-5a9be.appspot.com",
-      messagingSenderId: "1009523253982",
-      appId: "1:1009523253982:web:50848006f7eb699056984f"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        window.location.replace("/index.html"); // redirect immediately if not logged in
-      }
-    });
-  </script>
+  // Protect this page, redirect to login if not authenticated
+  protectPage("/index.html");
+</script>
 
   <!-- Styles and fonts -->
   <link rel="stylesheet" href="menu.css" />
