@@ -10,7 +10,66 @@
   <link rel="stylesheet" href="styles.css">
   <script src="Auth.js" type="module" defer></script>
   <script src="login.js" type="module" defer></script>
+  <style>
+    /* Bright messages */
+    .message {
+      font-weight: 600;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .message.error {
+      color: #ff3333;
+      background: rgba(255, 0, 0, 0.1);
+      padding: 0.5rem;
+      border-radius: 6px;
+    }
+    .message.success {
+      color: #28a745;
+      background: rgba(0, 255, 0, 0.1);
+      padding: 0.5rem;
+      border-radius: 6px;
+    }
 
+    /* Input styling */
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      padding-right: 2.5rem;
+      border: 2px solid #007bff;
+      background: rgba(255, 255, 255, 0.15);
+      color: #000;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+    }
+    .input-group input::placeholder {
+      color: #555;
+    }
+
+    /* Toggle button */
+    .input-group button {
+      position: absolute;
+      top: 50%;
+      right: 0.75rem;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #003366;
+      padding: 0;
+    }
+
+    /* Centered headings */
+    .left-panel h1,
+    .left-panel .subtitle {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <div class="background" aria-hidden="true">
@@ -19,37 +78,57 @@
   </div>
 
   <div class="container layout-split">
-  <div class="left-panel">
-  <h1>Welcome to NPS</h1>
-  <p class="subtitle">Your Ultimate Basketball Statistics Hub</p>
+    <div class="left-panel">
+      <h1>Welcome to NPS</h1>
+      <p class="subtitle">Your Ultimate Basketball Statistics Hub</p>
 
-    <form id="loginForm">
-      <div class="form-row">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="you@example.com" required />
-      </div>
+      <form id="loginForm">
+        <div class="form-row">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+        </div>
 
-      <div class="form-row">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Password" required />
-      </div>
+        <div class="form-row">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <input type="password" id="password" placeholder="Password" required />
+            <button type="button" id="togglePassword" aria-label="Toggle password visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
 
-      <div id="logError" class="message" role="status" aria-live="polite"></div>
+        <div id="logError" class="message" role="status" aria-live="polite"></div>
 
-      <div class="form-actions">
-        <button id="signIn" type="button" class="btn primary">Log In</button>
-        <button id="reset" type="button" class="btn secondary">Reset Password</button>
-      </div>
-    </form>
-  </div>
-
-  <div class="right-panel">
-    <img src="assets/images/NPS_logo.png" alt="NPS Logo" class="logo-large" />
-  </div>
-</div>
-
+        <div class="form-actions">
+          <button id="signIn" type="button" class="btn primary">Log In</button>
+          <button id="reset" type="button" class="btn secondary">Reset Password</button>
+        </div>
       </form>
-    </section>
-  </main>
+    </div>
+
+    <div class="right-panel">
+      <img src="assets/images/NPS_logo.png" alt="NPS Logo" class="logo-large" />
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
+
+      if (togglePassword && passwordInput) {
+        togglePassword.addEventListener("click", () => {
+          const type = passwordInput.type === "password" ? "text" : "password";
+          passwordInput.type = type;
+          togglePassword.innerHTML = type === "password"
+            ? '<i class="fas fa-eye"></i>'
+            : '<i class="fas fa-eye-slash"></i>';
+        });
+      }
+    });
+  </script>
 </body>
 </html>

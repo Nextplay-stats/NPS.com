@@ -12,12 +12,9 @@
     ],
     "rewrites": [
       { "source": "/setSession", "function": "setSession" },
-      { "source": "/homepage", "function": "authCheckHomepage" },
-      { "source": "/homepage.html", "function": "authCheckHomepage" },
       { "source": "/coach", "function": "authCheckCoach" },
-      { "source": "/coach.html", "function": "authCheckCoach" },
       { "source": "/admin", "function": "authCheckAdmin" },
-      { "source": "/admin.html", "function": "authCheckAdmin" }
+      { "source": "/homepage", "function": "authCheckHomepage" }
     ]
   }
 }

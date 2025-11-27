@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDGdQXdq1cOdawjkF_hnSunb87RvNLF-lw",
   authDomain: "npsv5-5a9be.firebaseapp.com",
@@ -14,60 +15,76 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-document.addEventListener("DOMContentLoaded", () => {
-  const signInBtn = document.getElementById("signIn");
-  const resetBtn = document.getElementById("reset");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const messageEl = document.getElementById("logError");
+// Grab DOM elements once
+const signInBtn = document.getElementById("signIn");
+const resetBtn = document.getElementById("reset");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+const messageEl = document.getElementById("logError");
 
-  function msg(t, err = true) {
-    if (!messageEl) return;
-    messageEl.textContent = t;
-    messageEl.classList.toggle("error", err);
-    messageEl.classList.toggle("success", !err);
+// Helper to show messages
+function showMessage(text, isError = true) {
+  if (!messageEl) return;
+  messageEl.textContent = text;
+  messageEl.classList.remove("error", "success");
+  messageEl.classList.add(isError ? "error" : "success");
+}
+
+// 🔑 Sign in handler
+signInBtn?.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!email || !password) return showMessage("Please enter both email and password.");
+
+  try {
+    showMessage("Signing in...", false);
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+
+    const idToken = await user.getIdToken();
+    const response = await fetch("/setSession", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idToken })
+    });
+
+    if (response.ok) {
+      showMessage("Signed in. Redirecting...", false);
+      window.location.replace("/homepage");
+    } else {
+      const errorText = await response.text();
+      showMessage(`Failed to set session cookie: ${errorText}`);
+    }
+  } catch (error) {
+    console.error("Sign-in error:", error);
+    showMessage(error.message || "Sign-in failed.");
   }
+});
 
-  signInBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
+// 🔄 Reset password handler
+resetBtn?.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  if (!email) return showMessage("Enter your email to reset your password.");
 
-    if (!email || !password) return msg("Please enter both email and password.");
-    try {
-      msg("Signing in...", false);
-      const { user } = await signInWithEmailAndPassword(auth, email, password);
+  try {
+    showMessage("Sending reset email...", false);
+    await sendPasswordResetEmail(auth, email);
+    showMessage("Password reset email sent.", false);
+  } catch (error) {
+    console.error("Reset error:", error);
+    showMessage(error.message || "Failed to send reset email.");
+  }
+});
 
-      const idToken = await user.getIdToken();
-      const response = await fetch("/setSession", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ idToken })
-      });
-
-      if (response.ok) {
-        msg("Signed in. Redirecting...", false);
-        window.location.replace("/homepage");
-      } else {
-        msg("Failed to set session cookie.");
-      }
-    } catch (error) {
-      msg(error.message || "Sign-in failed.");
-      console.error(error);
-    }
-  });
-
-  resetBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    const email = emailInput.value.trim();
-    if (!email) return msg("Enter your email to reset your password.");
-    try {
-      msg("Sending reset email...", false);
-      await sendPasswordResetEmail(auth, email);
-      msg("Password reset email sent.", false);
-    } catch (error) {
-      msg(error.message || "Failed to send reset email.");
-      console.error(error);
-    }
-  });
+// 👁 Toggle password visibility
+togglePassword?.addEventListener("click", () => {
+  const type = passwordInput.type === "password" ? "text" : "password";
+  passwordInput.type = type;
+  togglePassword.innerHTML =
+    type === "password"
+      ? '<i class="fas fa-eye"></i>'
+      : '<i class="fas fa-eye-slash"></i>';
 });
