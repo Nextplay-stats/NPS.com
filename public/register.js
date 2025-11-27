@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((userCredential) => {
         const user = userCredential.user;
 
-        // Optionally set display name if provided
+        
         if (username) {
           updateProfile(user, { displayName: username })
             .catch((err) => {

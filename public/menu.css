@@ -11,32 +11,25 @@ body {
   line-height: 1.4;
   color: #fff;
   min-height: 100vh;
-  background-image: url('assets/images/Background.png');
-  background-size: cover;
-  background-position: center;
   margin: 0;
-  align-items: center;   /* vertical centering */
-  justify-content: center; /* horizontal centering */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: url('assets/images/Background.png') center/cover no-repeat fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Background overlay for subtle depth */
 .menu-background {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: rgba(255, 255, 255, 0.02); /* very subtle overlay */
+  background: rgba(255, 255, 255, 0.02);
 }
 
-/* Main wrapper */
+
 .menu-wrapper {
   display: flex;
   align-items: center;
@@ -47,10 +40,9 @@ body {
   padding: 2rem;
 }
 
-/* Left panel with frosted glass */
 .menu-left {
-  flex: 0 0 450px; /* fixed width similar to login box */
-  background: rgba(255, 255, 255, 0.08);
+  flex: 0 0 450px;
+  background: var(--frost);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
@@ -58,46 +50,33 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* Heading */
 .menu-left h1 {
   font-family: "Bebas Neue", sans-serif;
   font-size: 2.5rem;
-  color: rgba(0, 51, 102, 0.9); /* slightly darker */
+  color: rgba(0, 51, 102, 0.9);
   text-align: center;
   margin-bottom: 0.5rem;
 }
 
-/* Subtitle */
 .menu-left .subtitle {
   font-size: 1rem;
-  color: rgba(85, 85, 85, 0.85); /* darker grey */
+  color: rgba(85, 85, 85, 0.85);
   text-align: center;
   margin-bottom: 2rem;
 }
 
-/* Grid of menu cards */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 1.5rem;
 }
 
-/* Individual menu card */
 .menu-card {
-  display: block;              /* ensures full card is clickable */
-  cursor: pointer;             /* shows pointer on hover */
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center;
-  color: #003366;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   background: rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 1.5rem;
@@ -109,19 +88,24 @@ body {
   transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
 }
 
+.menu-card i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
 .menu-card:hover {
   transform: translateY(-4px);
-  background: var(--accent);   /* bright blue background */
-  color: #fff;                 /* text turns white */
+  background: var(--accent);
+  color: #fff;
 }
 
 .menu-card:hover i {
-  color: #fff;                 /* icon turns white too */
+  color: #fff;
 }
 
-/* Right panel for logo */
 .menu-right {
-  flex: 0 0 400px; /* fixed width similar to login logo */
+  flex: 0 0 400px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,7 +116,6 @@ body {
   max-width: 350px;
 }
 
-/* Responsive layout */
 @media (max-width: 768px) {
   .menu-wrapper {
     flex-direction: column;
@@ -146,5 +129,13 @@ body {
 
   .menu-logo {
     width: 60%;
+  }
+
+  .menu-card i {
+    font-size: 1.5rem;
+  }
+
+  .menu-card span {
+    font-size: 0.9rem;
   }
 }

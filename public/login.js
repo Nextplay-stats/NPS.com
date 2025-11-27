@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
       msg("Signing in...", false);
       const { user } = await signInWithEmailAndPassword(auth, email, password);
 
-      // 🔑 Step 3: Exchange ID token for session cookie
       const idToken = await user.getIdToken();
       const response = await fetch("/setSession", {
         method: "POST",
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         msg("Signed in. Redirecting...", false);
-        window.location.replace("/homepage"); // protected route
+        window.location.replace("/homepage");
       } else {
         msg("Failed to set session cookie.");
       }

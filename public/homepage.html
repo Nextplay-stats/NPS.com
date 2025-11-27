@@ -4,15 +4,11 @@
   <meta charset="UTF-8" />
   <title>NPS Menu</title>
 
-  <!-- Firebase Auth Guard -->
   <script type="module">
   import { protectPage } from "./authGuard.js";
-
-  // Protect this page, redirect to login if not authenticated
   protectPage("/index.html");
 </script>
 
-  <!-- Styles and fonts -->
   <link rel="stylesheet" href="menu.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
